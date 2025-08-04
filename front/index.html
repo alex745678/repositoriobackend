@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <h1>bienvenidos al mundial de futbol</h1>
+        <p>aqui encontrara el nombre de algunos equipos clasificados al mundial</p>
+    </nav>
+
+    <h2>equipos de futbol clasificados</h2>
+
+    <!-- formulario para crear o editar equipos-->
+    <form id = "datoform">
+        <input type="hidden" id="id_equipo">
+
+        <!--inpunt de diligenciamiento-->
+    </div>
+            <label type="nombre">nombre del equipo</label>
+            <inpunt type="text" id="nombre" required>
+            </div>
+
+        <!--botones-->
+        <button type="submit" id="btnguardar">guardar</button>
+        <button type="button" id="btncancelar">cancelar</button>
+        </form>
+
+    <!-- contenedor tipo plantilla para renderizar los equipos -->
+    <div id="contenedorcards" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;"></div>
+
+    <!--plantilla de renderizado-->
+    <template id="templatecard">
+        <div class="card-equipos" style="border: 1px solid #ccc; padding: 16xp; border-radius: 8px; width: 250px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; align-items: center;">
+            <h3 class="nombreequipos"></h3>
+            <div style="margin-top: 10px;">
+                <button class="btn editar">editar</button>
+                <button class="btn eliminar">eliminar</button>
+            </div>
+        </div>
+    </template>
+
+    <!-- se invoca el archivo javascript al final del cod-->
+    <script src="index.js"></script>
+</body>
+</html>
