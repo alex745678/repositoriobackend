@@ -1,15 +1,14 @@
 const mysql = require('mysql2/promise')
-const dotenv = require('dotyenv')
+const dotenv = require('dotenv')
 dotenv.config();
 
-const pool = mysql.createpoll({
-    host: Process.env.DB_HOST,
-    user: Process.env.DB_USER,
-    password: Process.env.DB_PASSWORD,
-    database: Process.env.DB_NAME, || 'futbol_equipos'
+const pool = mysql.createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME || 'futbol_equipos',
     waitforConnections: true,
     connectionlimit: 10,
     queueLimit: 0
-    
 });
-Medule.exports = pool;
+module.exports = pool;
