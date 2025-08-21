@@ -22,7 +22,7 @@ class crudcontroller{
     async crear(tabla, data){
         try{
             const[resultado] = await db.query(`INSERT INTO ?? SET ?`, [tabla, data]);
-            return { ...data, id: resultad.insertId };
+            return { ...data, id: resultado.insertId };
         } catch (error) {
             throw error;
         }
