@@ -8,36 +8,36 @@
 <body>
     <nav>
         <h1>bienvenidos al mundial de futbol</h1>
-        <p>aqui encontrara el nombre de algunos equipos clasificados al mundial</p>
+        <p>aqui encontrara el listado de equipos del mundo</p>
     </nav>
 
-    <h2>equipos de futbol clasificados</h2>
+    <h2>equipos de futbol</h2>
 
     <!-- formulario para crear o editar equipos-->
     <form id = "datoform">
         <input type="hidden" id="id_equipo">
 
         <!--inpunt de diligenciamiento-->
-    </div>
+        <div>
             <label type="nombre">nombre del equipo</label>
-            <inpunt type="text" id="nombre" required>
-            </div>
+            <input type="text" id="nombre" required>
+        </div>
 
         <!--botones-->
         <button type="submit" id="btnguardar">guardar</button>
         <button type="button" id="btncancelar">cancelar</button>
-        </form>
+    </form>
 
     <!-- contenedor tipo plantilla para renderizar los equipos -->
     <div id="contenedorcards" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;"></div>
 
     <!--plantilla de renderizado-->
-    <template id="templatecard">
+    <template id="templatecards">
         <div class="card-equipos" style="border: 1px solid #ccc; padding: 16xp; border-radius: 8px; width: 250px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; align-items: center;">
-            <h3 class="nombreequipos"></h3>
+            <h3 class="nombreEquipos"></h3>
             <div style="margin-top: 10px;">
-                <button class="btn editar">editar</button>
-                <button class="btn eliminar">eliminar</button>
+                <button class="btn-editar">editar</button>
+                <button class="btn-eliminar">eliminar</button>
             </div>
         </div>
     </template>

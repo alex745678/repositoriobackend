@@ -1,17 +1,16 @@
-const api_url = 'https://localhost.3000/api/equipos'
+const api_url = 'http://localhost:3000/api/equipos';
 
-//metodoss crud para 
 async function obtenerEquipos() {
-    const res = await fetch(api-url);
+    const res = await fetch(api_url);
     const equipos = await res.json();
     return equipos;
 }
 
 async function crearEquipos(data) {
     const res = await fetch(api_url, {
-        wethod: 'POST',
+        method: 'POST',
         headers: {
-            'content-type': 'appilcation/json'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     });
@@ -22,7 +21,7 @@ async function actualizarEquipos(id, data) {
     const res = await fetch(`${api_url}/${id}`, {
         method: 'PUT',
         headers: {
-            'contenty-type': 'application/json'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     });
@@ -30,31 +29,63 @@ async function actualizarEquipos(id, data) {
 }
 
 async function eliminarEquipos(id) {
-    const res = await fetch(`${api-url}/${id}`, {
+    const res = await fetch(`${api_url}/${id}`, {
         method: 'DELETE',
     });
     return await res.json();
 }
 
-// refere3nciads los elementos del DOM
-const contenedorcards = document.getElementById('contenedorcars');
+// Referencias al DOM
+const contenedorCards = document.getElementById('contenedorcards');
 const templatecards = document.getElementById('templatecards');
 const datoform = document.getElementById('datoform');
 const nombre = document.getElementById('nombre');
-const btncancelart = document.getElementById('btncancelar');
+const btncancelar = document.getElementById('btncancelar');
+const id_equipo = document.getElementById('id_equipo');
 
-//mostrar al caragar la pagina en el templte
+// Mostrar equipos
 async function mostrarequipos() {
-    contenedoresCards.innerHTML = '';
+    contenedorCards.innerHTML = '';
     const equipos = await obtenerEquipos();
     equipos.forEach(equipo => {
         const clone = templatecards.content.cloneNode(true);
-        clone.queryselector('.nombrEquipos').textcontent = equipo.nombre_equipo;
-        clone.queryselector('.btn-editar').onclick = () => cargarequipoparaeditar(equipo);
-        clone.queryselector('.btn-eliminar').onclick = () => elimimnarequipohandier(equipo.id_equipo);
-        contenedorcards.appendChild(clone);
+        clone.querySelector('.nombreEquipos').textContent = equipo.nombre_equipo;
+        clone.querySelector('.btn-editar').onclick = () => cargarequipoparaeditar(equipo);
+        clone.querySelector('.btn-eliminar').onclick = () => eliminarEquipohandler(equipo.id_equipo);
+        contenedorCards.appendChild(clone);
     });
 }
 
+// Guardar o actualizar
+datoform.onsubmit = async (e) => {
+    e.preventDefault();
+    const data = { nombre_equipo: nombre.value };
+    if (id_equipo.value) {
+        await actualizarEquipos(id_equipo.value, data);
+    } else {
+        await crearEquipos(data);
+    }
+    datoform.reset();
+    id_equipo.value = '';
+    mostrarequipos();
+};
 
+// Cancelar edición
+btncancelar.onclick = () => {
+    datoform.reset();
+    id_equipo.value = '';
+};
 
+// Cargar equipo para editar
+function cargarequipoparaeditar(equipo) {
+    id_equipo.value = equipo.id_equipo;
+    nombre.value = equipo.nombre_equipo;
+}
+
+// Eliminar equipo
+async function eliminarEquipohandler(id) {
+    await eliminarEquipos(id);
+    mostrarequipos();
+}
+
+mostrarequipos();
